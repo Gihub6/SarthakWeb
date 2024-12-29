@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buy Now</title>
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #6a11cb;
+            margin-bottom: 1.5rem;
+        }
+
+        .product-summary {
+            margin-bottom: 2rem;
+        }
+
+        .product-summary ul {
+            list-style: none;
+            margin-bottom: 1rem;
+        }
+
+        .product-summary ul li {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-summary p span {
+            font-weight: bold;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        input, button, select {
+            padding: 0.5rem;
+            margin-bottom: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        button {
+            background: #6a11cb;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        button:hover {
+            background: #2575fc;
+        }
+
+        .success-message {
+            text-align: center;
+            color: green;
+            margin-top: 1rem;
+        }
+
+        .navigation {
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        .navigation a {
+            margin: 0 1rem;
+            text-decoration: none;
+            color: #6a11cb;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        .navigation a:hover {
+            color: #2575fc;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Buy Now</h1>
+        <div class="product-summary">
+            <ul id="product-list">
+                <!-- Product items will be injected here -->
+            </ul>
+            <p>Total Price: <span id="total-price">Loading...</span></p>
+        </div>
+
+        <form id="checkout-form">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required placeholder="Enter your full name">
+
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required placeholder="Enter your email">
+
+            <label for="address">Shipping Address</label>
+            <input type="text" id="address" name="address" required placeholder="Enter your shipping address">
+
+            <label for="payment-mode">Payment Mode</label>
+            <select id="payment-mode" name="payment-mode" required>
+                <option value="" disabled selected>Select Payment Mode</option>
+                <option value="online">Online Payment</option>
+                <option value="cod">Cash on Delivery</option>
+            </select>
+
+
+        </form>
+       <a href="confirmation.html"><button type="submit" onclick="sarthak()">Complete Purchase</button></a> 
+        <p class="success-message" id="success-message" style="display: none;">Thank you for your purchase! A confirmation email has been sent.</p>
+
+        <div class="navigation">
+            <a href="index.html">Home</a>
+            <a href="shop.html">Shop</a>
+            <a href="aboutus.html">About Us</a>
+            <a href="contact.html">Contact</a>
+        </div>
+    </div>
+
+    <script>
+        // Get URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const products = JSON.parse(urlParams.get('products') || '[]');
+        const totalPrice = urlParams.get('total') || '0.00';
+
+        // Update the product details on the page
+        const productList = document.getElementById('product-list');
+        products.forEach(product => {
+            const li = document.createElement('li');
+            li.textContent = `${product.name} - $${product.price.toFixed(2)}`;
+            productList.appendChild(li);
+        });
+
+        document.getElementById('total-price').textContent = `$${parseFloat(totalPrice).toFixed(2)}`;
+
+        // Handle form submission
+        const form = document.getElementById('checkout-form');
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            // Simulate successful purchase
+            document.getElementById('success-message').style.display = 'block';
+
+            // Optionally clear the form
+            form.reset();
+        });
+        function sarthak(){
+            alert("Thank You For Purchasing Thanks and Regards.......Shopease")
+        }
+    </script>
+   
+    
+</body>
+</html>

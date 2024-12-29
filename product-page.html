@@ -1,0 +1,577 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tiles Shop</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #E0E0E0;
+            scroll-behavior: smooth; /* Smooth scrolling for navigation */
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
+
+        nav1 {
+            display: flex;
+            justify-content: center;
+            background-color: #444;
+            padding: 10px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav1 a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+        }
+
+        nav1 a:hover {
+            text-decoration: underline;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 50px;
+            background: url('C:\\Users\\admin\\Desktop\\PranavWebsite\\back.png') no-repeat center;
+            background-size: cover;
+            color: white;
+            height: 30vw;
+        }
+
+        .hero h1 {
+            font-size: 58px;
+            animation: fadeInDown 3s ease-in-out; /* Fade-in animation */
+
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .products {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            padding: 20px;
+        }
+
+        .product {
+            background-color: white;
+            margin: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            width: 300px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            opacity: 0; /* Initially hidden */
+            transform: translateY(50px); /* Start below viewport */
+            transition: all 0.5s ease-out;
+        }
+
+        .product img {
+            width: 100%;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .product h3 {
+            margin: 15px 0;
+        }
+
+        .product p {
+            padding: 0 15px;
+            color: #666;
+        }
+
+        .product .ratings {
+            color: #f4c150;
+            font-size: 1.2em;
+            margin: 5px 0;
+        }
+
+        .product .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 15px;
+        }
+
+        .product button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .product .buy-now {
+            background-color: #007bff;
+        }
+
+        .product button:hover {
+            opacity: 0.9;
+        }
+
+        footer {
+            text-align: center;
+            background-color: #333;
+            color: white;
+            padding: 15px;
+/*            position: fixed;*/
+            bottom: 0;
+            width: 100%;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .section-header h2 {
+            font-size: 2.5em;
+            color: white;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        .section-header p {
+            font-size: 1.2em;
+            color: #666;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+        .hero1 {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 50px;
+        }
+
+        .hero1-text {
+            width: 50%;
+        }
+
+        .hero1-text h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .hero1-text p {
+          font-size: 18px;
+          line-height: 1.5;
+        }
+
+        .hero1-image {
+          width: 50%;
+        }
+
+        .hero1-image img {
+          width: 100%;
+          height: auto;
+        }
+
+        .button {
+          display: inline-block;
+          padding: 15px 30px;
+          background-color: #f05050;
+          color: white;
+          text-decoration: none;
+          font-size: 18px;
+          border-radius: 5px;
+          margin-top: 20px;
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+            background-color: #000000;
+        }
+
+.nav-left {
+  display: flex;
+  align-items: center;
+}
+
+.nav-left a {
+  margin-right: 20px;
+  color: white;
+  text-decoration: none;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+}
+
+.nav-right input[type="text"] {
+  padding: 10px;
+  border: 1px solid white;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+.nav-right button {
+  padding: 10px 20px;
+  background-color: #ffffff;
+  color: black;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+footer {
+  background-color: #000000;
+  padding: 20px;
+  text-align: center;
+}
+
+footer .container {
+  display: flex;
+  justify-content: space-between;
+}
+
+footer .column {
+  flex: 1;
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+footer h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+footer ul {
+  list-style: none;
+  padding: 0;
+}
+
+footer li {
+  margin-bottom: 5px;
+}
+
+footer a {
+  color: white;
+  text -decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+.container1 {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+input[type="text"],
+input[type="email"],
+input[type="number"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-sizing: border-box;
+  margin-bottom: 15px;
+}
+
+button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 49%;
+  margin-right: 2%;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.privacy {
+  margin-top: 20px;
+  color: #666;
+  font-size: 14px;
+}
+
+.privacy a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to Tiles Shop</h1>
+    </header>
+
+    <nav1>
+        <a href="index.html">Home</a>
+        <a href="buynow.html">Products</a>
+        <a href="aboutUs.html">About Us</a>
+        <a href="contact.html">Contact</a>
+
+
+    </nav1>
+
+<!-- <div class="hero1">
+  
+  <div class="hero1-image">
+    <img src="sec.avif" alt="Hero Image">
+  </div>
+</div> -->
+<br><br><br>
+    <header class="products" id="products">
+        <div class="section-header">
+            <h2>Explore Our Premium Tile Collection</h2>
+            <p>Find the perfect tiles to enhance the beauty and functionality of your space.</p>
+        </div>
+    </header>
+
+    <section class="products">
+        <div class="product">
+            <img src="C:\\Users\\admin\\Desktop\\PranavWebsite\\tile5.jpg" style="height: 30vw; width: 20vw;" alt="Tile 1">
+            <h3>Marble Tile</h3>
+            <p>Elegant and durable marble tiles for a luxurious look.</p>
+            <div class="ratings">&#9733;&#9733;&#9733;&#9733;&#9734;</div>
+            <div class="buttons">
+                <button class="add-to-cart">Add to Cart</button>
+                <button class="buy-now" onclick="openBuyNowForm()">Buy Now</button>
+            </div>
+        </div>
+
+        <div class="product">
+            <img src="C:\\Users\\admin\\Desktop\\PranavWebsite\\wooden.jpg" style="height: 30vw; width: 20vw;" alt="Tile 2">
+            <h3>Wooden Tile</h3>
+            <p>Get the warmth of wood with the durability of tiles.</p>
+            <div class="ratings">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <div class="buttons">
+                <button class="add-to-cart">Add to Cart</button>
+                <button class="buy-now" onclick="openBuyNowForm()">Buy Now</button>
+            </div>
+        </div>
+
+        <div class="product">
+            <img src="C:\\Users\\admin\\Desktop\\PranavWebsite\\tile8.jpg" style="height: 30vw; width: 20vw;" alt="Tile 3">
+            <h3>Porcelain Tile</h3>
+            <p>Modern porcelain tiles that combine style and strength.</p>
+            <div class="ratings">&#9733;&#9733;&#9733;&#9734;&#9734;</div>
+            <div class="buttons">
+                <button class="add-to-cart">Add to Cart</button>
+                <button class="buy-now" onclick="openBuyNowForm()">Buy Now</button>
+            </div>
+        </div>
+
+        <div class="product">
+            <img src="C:\\Users\\admin\\Desktop\\PranavWebsite\\tile7.jpg" style="height: 30vw; width: 20vw;" alt="Tile 4">
+            <h3>Glass Tile</h3>
+            <p>Beautiful glass tiles for a sleek and elegant finish.</p>
+            <div class="ratings">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <div class="buttons">
+                <button class="add-to-cart">Add to Cart</button>
+                <button class="buy-now" onclick="openBuyNowForm()">Buy Now</button>
+            </div>
+        </div>
+    </section>
+
+     <section class="products">
+        <div class="product">
+            <img src="C:\\Users\\admin\\Desktop\\PranavWebsite\\tile5.jpg" style="height: 30vw; width: 20vw;" alt="Tile 1">
+            <h3>Marble Tile</h3>
+            <p>Elegant and durable marble tiles for a luxurious look.</p>
+            <div class="ratings">&#9733;&#9733;&#9733;&#9733;&#9734;</div>
+            <div class="buttons">
+                <button class="add-to-cart">Add to Cart</button>
+                <button class="buy-now" onclick="openBuyNowForm()">Buy Now</button>
+            </div>
+        </div>
+
+        <div class="product">
+            <img src="C:\\Users\\admin\\Desktop\\PranavWebsite\\wooden.jpg" style="height: 30vw; width: 20vw;" alt="Tile 2">
+            <h3>Wooden Tile</h3>
+            <p>Get the warmth of wood with the durability of tiles.</p>
+            <div class="ratings">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <div class="buttons">
+                <button class="add-to-cart">Add to Cart</button>
+                <button class="buy-now" onclick="openBuyNowForm()">Buy Now</button>
+            </div>
+        </div>
+
+        <div class="product">
+            <img src="C:\\Users\\admin\\Desktop\\PranavWebsite\\tile8.jpg" style="height: 30vw; width: 20vw;" alt="Tile 3">
+            <h3>Porcelain Tile</h3>
+            <p>Modern porcelain tiles that combine style and strength.</p>
+            <div class="ratings">&#9733;&#9733;&#9733;&#9734;&#9734;</div>
+            <div class="buttons">
+                <button class="add-to-cart">Add to Cart</button>
+                <button class="buy-now" onclick="openBuyNowForm()">Buy Now</button>
+            </div>
+        </div>
+
+        <div class="product">
+            <img src="C:\\Users\\admin\\Desktop\\PranavWebsite\\tile7.jpg" style="height: 30vw; width: 20vw;" alt="Tile 4">
+            <h3>Glass Tile</h3>
+            <p>Beautiful glass tiles for a sleek and elegant finish.</p>
+            <div class="ratings">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <div class="buttons">
+                <button class="add-to-cart">Add to Cart</button>
+                <button class="buy-now" onclick="openBuyNowForm()">Buy Now</button>
+            </div>
+        </div>
+    </section>
+
+     <section class="products">
+        <div class="product">
+            <img src="C:\\Users\\admin\\Desktop\\PranavWebsite\\tile5.jpg" style="height: 30vw; width: 20vw;" alt="Tile 1">
+            <h3>Marble Tile</h3>
+            <p>Elegant and durable marble tiles for a luxurious look.</p>
+            <div class="ratings">&#9733;&#9733;&#9733;&#9733;&#9734;</div>
+            <div class="buttons">
+                <button class="add-to-cart">Add to Cart</button>
+                <button class="buy-now" onclick="openBuyNowForm()">Buy Now</button>
+            </div>
+        </div>
+
+        <div class="product">
+            <img src="C:\\Users\\admin\\Desktop\\PranavWebsite\\wooden.jpg" style="height: 30vw; width: 20vw;" alt="Tile 2">
+            <h3>Wooden Tile</h3>
+            <p>Get the warmth of wood with the durability of tiles.</p>
+            <div class="ratings">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <div class="buttons">
+                <button class="add-to-cart">Add to Cart</button>
+                <button class="buy-now" onclick="openBuyNowForm()">Buy Now</button>
+            </div>
+        </div>
+
+        <div class="product">
+            <img src="C:\\Users\\admin\\Desktop\\PranavWebsite\\tile8.jpg" style="height: 30vw; width: 20vw;" alt="Tile 3">
+            <h3>Porcelain Tile</h3>
+            <p>Modern porcelain tiles that combine style and strength.</p>
+            <div class="ratings">&#9733;&#9733;&#9733;&#9734;&#9734;</div>
+            <div class="buttons">
+                <button class="add-to-cart">Add to Cart</button>
+                <button class="buy-now" onclick="openBuyNowForm()">Buy Now</button>
+            </div>
+        </div>
+
+        <div class="product">
+            <img src="C:\\Users\\admin\\Desktop\\PranavWebsite\\tile7.jpg" style="height: 30vw; width: 20vw;" alt="Tile 4">
+            <h3>Glass Tile</h3>
+            <p>Beautiful glass tiles for a sleek and elegant finish.</p>
+            <div class="ratings">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <div class="buttons">
+                <button class="add-to-cart">Add to Cart</button>
+                <button class="buy-now" onclick="openBuyNowForm()">Buy Now</button>
+            </div>
+        </div>
+    </section>
+    <br><br><br><br><br><br>
+
+    
+
+<nav>
+  <nav1>
+        <a href="c.html">Home</a>
+        <a href="buynow.html">Products</a>
+        <a href="aboutUs.html">About Us</a>
+        <a href="#contact">Contact</a>
+    </nav1>
+  <div class="nav-right">
+    <input type="text" placeholder="Search...">
+    <button>Search</button>
+  </div>
+</nav>
+
+
+<footer id="footer">
+  <div class="container">
+    <div class="column">
+      <h2>About Us</h2>
+      OUR VALUES. We’ve led the way in our industry by staying true to our values: design, well-being, innovation, inclusion, and sustainability. Set on a firm foundation, our values have evolved to make room for new discoveries and advancements in how we understand ourselves, one another, the world we share.
+      <ul>
+        <li><a href="#mission">Our Mission</a></li>
+        <li><a href="#team">Our Team</a></li>
+        <li><a href="#careers">Careers</a></li>
+      </ul>
+    </div>
+    <div class="column">
+      <h2>Services</h2>
+      <ul>
+        <li><a href="#consulting">Consulting</a></li>
+        <li><a href="#development">Development</a></li>
+        <li><a href="#design">Design</a></li>
+      </ul>
+    </div>
+    <div class="column">
+      <h2>Contact</h2>
+      <ul>
+        <li><a href="#support">Support</a></li>
+        <li><a href="#feedback">Feedback</a></li>
+        <li><a href="#location">Location</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                targetElement.scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+
+        // Scroll animation for products
+        const products = document.querySelectorAll('.product');
+        window.addEventListener('scroll', () => {
+            products.forEach(product => {
+                const rect = product.getBoundingClientRect();
+                if (rect.top < window.innerHeight - 100) {
+                    product.style.opacity = 1;
+                    product.style.transform = 'translateY(0)';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
